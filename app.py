@@ -62,14 +62,22 @@ gemini_model = genai.GenerativeModel(
 # NLTK Resources
 # ==========================================================
 
-nltk.download("punkt")
-nltk.download("punkt_tab")
 
-nltk.download("stopwords")
+import nltk
 
-nltk.download("wordnet")
+resources = {
+    "tokenizers/punkt": "punkt",
+    "tokenizers/punkt_tab": "punkt_tab",
+    "corpora/stopwords": "stopwords",
+    "corpora/wordnet": "wordnet",
+    "corpora/omw-1.4": "omw-1.4",
+}
 
-nltk.download("omw-1.4")
+for resource_path, package in resources.items():
+    try:
+        nltk.data.find(resource_path)
+    except LookupError:
+        nltk.download(package)
 
 
 # ==========================================================
