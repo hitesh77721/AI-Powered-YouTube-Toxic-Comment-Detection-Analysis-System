@@ -11,6 +11,22 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
+
+import nltk
+
+resources = {
+    "tokenizers/punkt": "punkt",
+    "tokenizers/punkt_tab": "punkt_tab",
+    "corpora/stopwords": "stopwords",
+    "corpora/wordnet": "wordnet",
+    "corpora/omw-1.4": "omw-1.4",
+}
+
+for path, package in resources.items():
+    try:
+        nltk.data.find(path)
+    except LookupError:
+        nltk.download(package)
 # ==========================================================
 # Load Model
 # ==========================================================
